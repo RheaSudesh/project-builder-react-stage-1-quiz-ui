@@ -1,31 +1,75 @@
-import React, { Component } from 'react';
-import './Component.css'
-export default function Result() {
-    return(
-    <div className="resultpage">
-        <h1 className="reshead">Result</h1>
-    <div className="stats">
-        <h2 className="statshead">You need more practice!</h2>
-        <h2 className="statsscore">Your Score: 20%</h2>
-        <div className="statsdetmarks">
-            <div className="statsdetails">
-            <span>Total number of questions</span>
-            <span>Number of attempted questions</span>
-            <span>Number of correct answers</span>
-            <span>Number of wrong answers</span>
-            </div> 
-            <div className="statsmarks">
-                <span>15</span>
-                <span>9</span>
-                <span>3</span>
-                <span>6</span>
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import classnames from 'classnames';
+import { Helmet } from 'react-helmet';
+import '../styles/style.css'
+
+class ResultComponent extends Component{
+        constructor (props) {
+            super(props);
+            this.state = {
+                score: 0,
+                type: '',
+                numberOfQuestions: 0,
+                numberOfAnsweredQuestions: 0,
+                correctAnswers: 0,
+                wrongAnswers: 0
+            };
+        }
+
+        componentDidMount () {
+            const { state} = this.props.location;
+            this.setState({
+                score: (state.score / state.numberOfQuestions) *100,
+                numberOfQuestions: state.numberOfQuestions,
+                numberOfAnsweredQuestions: state.numberOfAnsweredQuestions,
+                correctAnswers: state.correctAnswers,
+                wrongAnswers: state.wrongAnswers
+                
+            });
+        }    
+    render(){
+        const {state,score } = this.props.location;
+        let stats, remark;
+        if (this.state.score.toFixed(0) <= 30) {
+            remark = 'You need more practice';
+        } else if (this.state.score.toFixed(0) > 30 && this.state.score.toFixed(0) <= 50) {
+            remark = 'Better luck next time';
+        } else if (this.state.score.toFixed(0) <= 70 && this.state.score.toFixed(0) > 50) {
+            remark = 'You can do better';
+        } else if (this.state.score.toFixed(0) >= 71 && this.state.score.toFixed(0) <= 84) {
+            remark = 'You did great!'
+        } else {
+            remark = 'You\'re an absolute genius!'
+        }
+        
+        return(
+            <Fragment>
+            <Helmet><title>Quiz Summary - Instaquiz</title></Helmet>
+            <div style={{ textAlign: 'center' }}>
+                <span className="mdi mdi-check-circle-outline mdi-lg success-icon"></span>
             </div>
-        </div>
-    </div>
-    <div className="btnss">
-        <button className="playagainbtn">Play Again</button>
-        <button className="backbtn">Back to Home</button>
-    </div>
-    </div>
-    );
-}
+            <h1 style={{ textAlign: 'center' }}>Result</h1>
+            <div className="container stats">
+                <h4>{ remark }</h4>
+                <h2 className={classnames('perfect-score', {
+                    'perfect-score': this.state.score > 85
+                })}>Your Score: {this.state.score.toFixed(0)}&#37;</h2>
+                <span className="stat left">Total Number of Questions: </span><span className="right">{this.state.numberOfQuestions}</span><br />
+                <span className="stat left">Number of attempted questions: </span><span className="right">{this.state.numberOfAnsweredQuestions}</span><br />
+                <span className="stat left">Number of Correct Answers: </span><span className="right">{this.state.correctAnswers}</span><br />
+                <span className="stat left">Number of Wrong Answers: </span><span className="right">{this.state.wrongAnswers}</span><br />
+            </div>
+            <section>
+                <ul>
+                    <li><Link to="/play/quiz" className= "playagainbtn" id="summary">Play Again</Link></li>
+                    <li><Link to="/" className= "backbtn" id="summary">Back to Home</Link></li>
+                </ul>
+            </section>
+        </Fragment>
+        );
+        }
+    }
+
+
+export default ResultComponent;

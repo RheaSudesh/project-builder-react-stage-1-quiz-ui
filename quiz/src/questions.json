@@ -1,0 +1,135 @@
+[
+    {
+        "question": "Which is the hottest planet in our solar system?",
+        "optionA": "Mercury",
+        "optionB":" Earth",
+        "optionC":"Venus",
+        "optionD":"Mars",
+        "answer": "Mercury"
+        
+      },
+      {
+        "question": "What is the correct order of the planets from the sun?",
+        "answer": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune",
+        "optionA":"Venus, Earth, Mercury, Mars, Jupiter, Saturn, Uranus and Neptune",
+        "optionB": "Venus, Earth, Jupiter, Mars, Mercury, Saturn, Uranus and Neptune",
+        "optionC":"Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune",
+        "optionD": "Venus, Earth, Jupiter, Mars, Mercury, Saturn, Uranus and Neptune"
+        
+      },
+      {
+        "question": "Which is the largest astero 'id' ?",
+        "optionA":"Ceres",
+        "optionB": "4 Vesta",
+        "optionC": "Bennu",
+        "optionD": "2 Pallas" ,
+        "answer": "Ceres"
+       
+      },
+      {
+        "question": " What year were the first astronauts selected?",
+        "optionA":"1959",
+        "optionB": "1998",
+        "optionC":"1958",
+        "optionD":"1963",
+        "answer": "1959"
+      },
+      {
+        "question": "What mass does the sun take up in the solar system?",
+        "optionA":"89.45",
+        "optionB": "99.86",
+        "optionC":"78.68",
+        "optionD":"32.89",
+        "answer": "99.86"
+        
+      }, 
+    {
+      "question": "Who was the first man in space ?",
+      "optionA":"Scott Kelly",
+      "optionB":"Yuri Gagarin",
+      "optionC":"Nick Hauge",
+      "optionD":"Neil Armstrong",
+      "answer": "Yuri Gagarin"
+    },
+    {
+      "question": "Which was the first animal to go into space?",
+      "optionA":"Mouse",
+      "optionB":"Cat",
+      "optionC":"Dog",
+      "optionD":"Monkey",
+      "answer": "Dog"
+    },
+    {
+      "question": "Complete the formula: Speed = _____ / Time",
+      "optionA":"Mass",
+      "optionB":"Direction",
+      "optionC":"Temperature",
+      "optionD":"Distance",
+      "answer": "Distance"
+    },
+    {
+      "question": "Which of the following is an advantage of using JavaScript?",
+      "optionA":"Increased interactivity",
+      "optionB":"Less server interaction",
+      "optionC":"Immediate feedback from the users",
+      "optionD":"All of the above",
+      "answer": "All of the above"
+    },
+    {
+      "question": "JavaScript is a ________ Side Scripting Language",
+      "optionA": "Server",
+      "optionB":" ISP",
+      "optionC":"Browser",
+      "optionD":"None of the above",
+      "answer": "Browser"
+    },
+    {
+        "question": "Who was the first man in space ?",
+        "optionA":"Scott Kelly",
+        "optionB":"Yuri Gagarin",
+        "optionC":"Nick Hauge",
+        "optionD":"Neil Armstrong",
+        "answer": "Yuri Gagarin"
+      },
+      {
+        "question": "Which was the first animal to go into space?",
+        "optionA":"Mouse",
+        "optionB":"Cat",
+        "optionC":"Dog",
+        "optionD":"Monkey",
+        "answer": "Dog"
+      },
+      {
+        "question": "Complete the formula: Speed = _____ / Time",
+        "optionA":"Mass",
+        "optionB":"Direction",
+        "optionC":"Temperature",
+        "optionD":"Distance",
+        "answer": "Distance"
+      },
+      {
+        "question": "Which of the following is an advantage of using JavaScript?",
+        "optionA":"Increased interactivity",
+        "optionB":"Less server interaction",
+        "optionC":"Immediate feedback from the users",
+        "optionD":"All of the above",
+        "answer": "All of the above"
+      },
+      {
+        "question": "JavaScript is a ________ Side Scripting Language",
+        "optionA": "Server",
+        "optionB":" ISP",
+        "optionC":"Browser",
+        "optionD":"None of the above",
+        "answer": "Browser"
+      },
+      {
+        "question": "Which is the largest astero 'id' ?",
+        "optionA":"Ceres",
+        "optionB": "4 Vesta",
+        "optionC": "Bennu",
+        "optionD": "2 Pallas" ,
+        "answer": "Ceres"
+       
+      }
+  ]
