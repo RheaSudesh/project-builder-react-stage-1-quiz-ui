@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import classnames from 'classnames';
 import { Helmet } from 'react-helmet';
 import '../styles/style.css'
 
@@ -18,7 +17,7 @@ class ResultComponent extends Component{
         }
 
         componentDidMount () {
-            const { state} = this.props.location;
+            const { state} = this.props.location; 
             this.setState({
                 score: (state.score / state.numberOfQuestions) *100,
                 numberOfQuestions: state.numberOfQuestions,
@@ -46,19 +45,21 @@ class ResultComponent extends Component{
         return(
             <Fragment>
             <Helmet><title>Quiz Summary - Instaquiz</title></Helmet>
-            <div style={{ textAlign: 'center' }}>
-                <span className="mdi mdi-check-circle-outline mdi-lg success-icon"></span>
+            <div className="tick-icon">
+                <span className="mdi mdi-check-circle-outline mdi-lg success-icon"></span>  
             </div>
-            <h1 style={{ textAlign: 'center' }}>Result</h1>
+            <h1 className="tick-icon">Result</h1>
             <div className="container stats">
                 <h4>{ remark }</h4>
-                <h2 className={classnames('perfect-score', {
-                    'perfect-score': this.state.score > 85
-                })}>Your Score: {this.state.score.toFixed(0)}&#37;</h2>
-                <span className="stat left">Total Number of Questions: </span><span className="right">{this.state.numberOfQuestions}</span><br />
-                <span className="stat left">Number of attempted questions: </span><span className="right">{this.state.numberOfAnsweredQuestions}</span><br />
-                <span className="stat left">Number of Correct Answers: </span><span className="right">{this.state.correctAnswers}</span><br />
-                <span className="stat left">Number of Wrong Answers: </span><span className="right">{this.state.wrongAnswers}</span><br />
+                <h2 className="perfect-score">Your Score: {this.state.score.toFixed(0)}&#37;</h2>
+                <span className="stat left">Total Number of Questions :
+                    </span><span className="right">{this.state.numberOfQuestions}</span><br />
+                <span className="stat left">Number of attempted questions :
+                    </span><span className="right">{this.state.numberOfAnsweredQuestions}</span><br />
+                <span className="stat left">Number of Correct Answers : 
+                    </span><span className="right">{this.state.correctAnswers}</span><br />
+                <span className="stat left">Number of Wrong Answers :
+                    </span><span className="right">{this.state.wrongAnswers}</span><br />
             </div>
             <section>
                 <ul>

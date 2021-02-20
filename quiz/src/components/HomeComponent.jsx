@@ -1,9 +1,9 @@
-import { textareaAutoResize } from 'materialize-css'
+// import { textareaAutoResize } from 'materialize-css'
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import '../styles/style.css'
-import QuizComponent from './QuizComponent'
+// import QuizComponent from './QuizComponent'
 
 
 export default class HomeComponent extends Component {

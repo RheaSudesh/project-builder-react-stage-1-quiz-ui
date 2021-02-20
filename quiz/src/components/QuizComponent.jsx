@@ -1,38 +1,47 @@
 // import { render } from '@testing-library/react';
 import React, { Component, Fragment } from 'react';
-import {Helmet} from 'react-helmet';
-import '@mdi/font/css/materialdesignicons.css';
-import '../styles/style.css';
+import {Helmet} from 'react-helmet'; //title and metadata
+import '@mdi/font/css/materialdesignicons.css';  //icons
+import '../styles/style.css'; //styling
 import M from 'materialize-css';
-import question from '../questions.json';
-import isEmpty from '../Functionalities/isEmpty';
-import ResultComponent from './ResultComponent';
+import question from '../questions.json';  //JSON file for questions
+import isEmpty from '../Functionalities/isEmpty'; 
+// import ResultComponent from './ResultComponent';
 
 
 class QuizComponent extends Component{
     constructor(props){
         super(props);
         this.state = {
+
+            //questions
             type: '',
-            questions: question, //here question is our json file
+            questions: question, 
             currentQuestion: {},
             nextQuestion: {},
             previousQuestion: {},
             answer: '',
+
+            //questions details
             numberOfQuestions: question.length,
             numberOfAnsweredQuestions: 0,
             currentQuestionIndex: 0,
+
+            //results
             score: 0,
             correctAnswers: 0,
             wrongAnswers: 0,
+
+            //enablers
             loading: false,
             previousButtonDisabled: false,
             nextButtonDisabled: false,
-            previousRandomNumbers: [],
+
+            //timer
             time: {}
         };
 
-        this.interval=null;
+        this.interval=null; //initial time interval is null
         
     }
 
@@ -50,7 +59,7 @@ class QuizComponent extends Component{
                 nextQuestion,
                 previousQuestion,
                 answer,
-                previousRandomNumbers: []
+               
             });
         }
     };
@@ -74,6 +83,7 @@ class QuizComponent extends Component{
         }
     }
 
+    //invoked immediately after this component is mounted
     componentDidMount () {
         const {questions,currentQuestion, nextQuestion, previousQuestion}=this.state;
         this.displayQuestion(questions, currentQuestion,nextQuestion,previousQuestion);
@@ -81,14 +91,14 @@ class QuizComponent extends Component{
         
     }
 
+    //invoked immediately after a component is removed or after timeout
     componentWillUnmount () {
         clearInterval(this.interval);
     }
 
-
+  
     endGame = () => {
         alert('Quiz has ended!');
-        const { state } = this;
         const quizData = {
             score: this.state.score,
             type: this.state.type,
@@ -104,6 +114,7 @@ class QuizComponent extends Component{
         
     }
 
+    //correct bubble UI element displayed
     correctAnswer = () => {
         M.toast({
             html: 'Correct Answer!',
@@ -124,8 +135,8 @@ class QuizComponent extends Component{
         });
     }
 
+    //wrong bubble UI element displayed
     wrongAnswer = () => {
-        navigator.vibrate(1000);
         M.toast({
             html: 'Wrong Answer!',
             classes: 'toast-invalid',
@@ -144,6 +155,7 @@ class QuizComponent extends Component{
         });
     }
 
+    //buttons for back next and quit
     handleNextButtonClick = (e) => {
         if (!this.state.nextButtonDisabled) {
             if (this.state.nextQuestion !== undefined) {
@@ -168,13 +180,13 @@ class QuizComponent extends Component{
     }
     handleQuitButtonClick = (e) => {
         if (window.confirm ('Are you sure you want to quit?')) {
-            this.props.history.push('/');
+            this.endGame();
         }
     }
 
-
+    // Timer of 3 mins to take up 15 questions
     startTimer = () => {
-        // const countDownTime = Date.now() + 900000;
+        
         const countDownTime = Date.now() + 180000;
         this.interval = setInterval(() => {
             const now = new Date();
@@ -194,8 +206,8 @@ class QuizComponent extends Component{
                 }, () => {
                     this.endGame();
                 });
-            } else {
-                this.setState({
+            } else { 
+                this.setState({ 
                     ...this.state,
                     time: {
                         seconds,
@@ -207,43 +219,41 @@ class QuizComponent extends Component{
         }, 1000);
     }
 
-increaseCount =()=>{
-    this.setState({
-        count: 5
-    })
-}
+  
 
-render() {
-const {currentQuestion, currentQuestionIndex, numberOfQuestions,time} =this.state;
+    render() {
+    const {currentQuestion, currentQuestionIndex, numberOfQuestions,time} =this.state;
 
-    console.log(this.state.correctAnswers);
-    return(
-        <Fragment>
-            <Helmet><title>Quiz - Play</title></Helmet>
-          
-        <div className="question">
-                <p>
-                <span className="ques">{this.state.currentQuestionIndex + 1} of {this.state.numberOfQuestions }</span>
-                <span className="lifeline">{time.minutes}:{time.seconds}</span><span className="mdi mdi-clock-outline mdi-24px ques"></span>
-                </p>
-            <h5> {currentQuestion.question} </h5>
-            <div className="option-container">
-               <p onClick={this.handleOptionClick}  className="option">{currentQuestion.optionA}</p>
-               <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionB}</p>
+        console.log(this.state.correctAnswers);
+        return(
+            <Fragment>
+                <Helmet><title>Quiz - Play</title></Helmet>
+            
+            <div className="question">
+                    <p> 
+                        <span className="ques">{currentQuestionIndex + 1} of {numberOfQuestions }</span>
+                        <span className="lifeline">{time.minutes}:{time.seconds}</span><span className="mdi mdi-clock-outline mdi-24px ques"></span>
+                    </p>
+                <h5> {currentQuestion.question} </h5>
+                
+                <div className="option-container">
+                    <p onClick={this.handleOptionClick}  className="option">{currentQuestion.optionA}</p>
+                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionB}</p>
+                </div>
+                <div className="option-container">
+                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionC}</p>
+                    <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionD}</p>
+                </div>
+                
+                <div className="buttonContainer">
+                    <button onClick={this.handlePrevButtonClick}>Previous</button>
+                    <button onClick={this.handleNextButtonClick}>Next</button>
+                    <button onClick={this.handleQuitButtonClick}>Quit</button>
+                </div>
             </div>
-            <div className="option-container">
-               <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionC}</p>
-               <p onClick={this.handleOptionClick} className="option">{currentQuestion.optionD}</p>
-            </div>
-            <div className="buttonContainer">
-                <button onClick={this.handlePrevButtonClick}>Previous</button>
-                <button onClick={this.handleNextButtonClick}>Next</button>
-                <button onClick={this.handleQuitButtonClick}>Quit</button>
-            </div>
-        </div>
-        </Fragment>
-    );
-  }
+            </Fragment>
+        );
+    }
 
 }
 export default QuizComponent;
